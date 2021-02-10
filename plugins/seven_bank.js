@@ -22,7 +22,7 @@ const balance = async function(login){
 	await page.click("input[value='ログオン']");
 
 	await page.waitForNavigation({timeout: 60000, waitUntil: "domcontentloaded"});
-	//await page.screenshot({path: "login.png"});
+	//await page.screenshot({path: "screenshot/login.png"});
 
 	const deposit = await page.evaluate(() => document.querySelector('#cphBizConf_lblDepositSum').innerText.replace(",", ""));
 
