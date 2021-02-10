@@ -1,0 +1,9 @@
+[prometheus]
+port = 3000
+
+[plugin]
+enabled = "all"
+
+[plugin.test]
+cron = "* * * * * *"
+login = {id = "a", password = "aaa"}
