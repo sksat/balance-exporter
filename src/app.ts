@@ -20,7 +20,7 @@ prom.collectDefaultMetrics();
 const gauge = new prom.Gauge({
 	name: "balance",
 	help: "help",
-	labelNames: ["target"],
+	labelNames: ["target", "property"],
 });
 
 const plugin = Object.create(null);
@@ -56,9 +56,23 @@ Object.keys(plugin).filter((id) => {
 	}
 
 	const fn = async() => {
-		const b = await balance(cfg.login);
-		console.log("balance["+id+"]: "+b);
-		gauge.labels(id).set(b);
+		const ret = await balance(cfg.login);
+		if (ret instanceof Array){
+			//console.log("tuple");
+			const b = ret[0];
+			const props = ret[1];
+			console.log("balance[" + id + "]: " + b);
+			gauge.labels(id, "balance").set(b);
+
+			for (const p of props){
+				console.log("balance[" + id + ":" + p[0] + "]: " + p[1]);
+				gauge.labels(id, p[0]).set(p[1]);
+			}
+		}else{
+			//console.log("not tuple");
+			console.log("balance[" + id + "]: " + ret);
+			gauge.labels(id, "").set(ret);
+		}
 	};
 
 	(async () =>{await fn()})();
