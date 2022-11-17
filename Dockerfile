@@ -23,7 +23,7 @@ RUN apk add --no-cache make g++ python3 \
       ca-certificates \
       ttf-freefont \
       nodejs \
-      nodejs-npm
+      npm
 RUN addgroup -g 1000 -S pptr && \
     adduser -D -u 1000 -S -G pptr pptr
 RUN echo '%pptr ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
