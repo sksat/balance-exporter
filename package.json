@@ -35,7 +35,7 @@
     "@types/node": "^14.14.25",
     "app-root-path": "^3.0.0",
     "express": "^4.17.1",
-    "node-cron": "^2.0.3",
+    "node-cron": "^3.0.0",
     "prom-client": "^13.1.0",
     "puppeteer": "^7.0.4"
   }
